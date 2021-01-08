@@ -1,0 +1,45 @@
+<nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="#" style="margin-top: 10px; margin-left: 20px;">TODO</a>
+</nav>
+
+<div class="container-fluid ">
+
+    <div class="row no-gutters">
+
+        <div class="col-9 col-md-4 col-sm-6 listadd justify-content-center">
+            <form [formGroup]="todoText" (ngSubmit)="addtodo()">
+                <div class="input-group mb-3" style="margin-top: 50px; ">
+
+                    <input formControlName="tContent" type="text" class="form-control" name="tContent"
+                        placeholder="Type Todo" style="outline: none; background-color: inherit; color: black;">
+
+                </div>
+
+
+
+
+                <button type="submit" class="btn btn-primary" [disabled]="!todoText.valid">ADD</button>
+            </form>
+        </div>
+
+        <div class="col-9 col-sm-6 col-md-8 listdis justify-content-center">
+            <div>Drag and drop for sort todo</div>
+            <div style="margin-top: 50px; margin-left: 50px;">
+
+                <div class="example-container">
+
+                    <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="lists" class="example-list"
+                        (cdkDropListDropped)="drop($event)">
+                        <div class="example-box" *ngFor="let item of lists" cdkDrag [cdkDragData]="item"
+                            style=" border: 0px; cursor: default;">
+                            <div class="column">{{item.content}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
